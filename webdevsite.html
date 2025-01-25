@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 6rem auto 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .controls {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .question {
+            margin-bottom: 2rem;
+        }
+
+        .question h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #1f2937;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: #2563eb;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #1e40af;
+        }
+
+        .answer-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .correct {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .incorrect {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">WebDev Quiz</a>
+            <div>
+                <button class="btn" onclick="resetQuiz()">Reset</button>
+                <button class="btn" onclick="showAllAnswers()">Show All Answers</button>
+                <button class="btn" onclick="hideAllAnswers()">Hide All Answers</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="quiz-container">
+        <div class="header">
+        </div>
+
+        <!-- Questions Start Here -->
+        <div class="question">
+            <h3>1. What does PHP stand for?</h3>
+            <div class="options">
+                <label><input type="radio" name="q1" value="a"> a) Preprocessed Hypertext Pages</label>
+                <label><input type="radio" name="q1" value="b"> b) PHP: Hypertext Preprocessor</label>
+                <label><input type="radio" name="q1" value="c"> c) Personal Home Pages</label>
+                <label><input type="radio" name="q1" value="d"> d) Processor of Hypertext Protocol</label>
+            </div>
+            <div class="answer-box" id="answer1">Correct Answer: b) PHP: Hypertext Preprocessor</div>
+        </div>
+
+        <div class="question">
+            <h3>2. Which of the following is true about PHP arrays?</h3>
+            <div class="options">
+                <label><input type="radio" name="q2" value="a"> a) Arrays in PHP can only store strings</label>
+                <label><input type="radio" name="q2" value="b"> b) Arrays in PHP must have sequential numeric indexes</label>
+                <label><input type="radio" name="q2" value="c"> c) Arrays in PHP can have different data types</label>
+                <label><input type="radio" name="q2" value="d"> d) PHP does not support associative arrays</label>
+            </div>
+            <div class="answer-box" id="answer2">Correct Answer: c) Arrays in PHP can have different data types</div>
+        </div>
+
+        <div class="question">
+            <h3>3. How can you access a value in an associative array in PHP?</h3>
+            <div class="options">
+                <label><input type="radio" name="q3" value="a"> a) $array->key</label>
+                <label><input type="radio" name="q3" value="b"> b) get($array[key])</label>
+                <label><input type="radio" name="q3" value="c"> c) $array["key"]</label>
+                <label><input type="radio" name="q3" value="d"> d) access($array[key])</label>
+            </div>
+            <div class="answer-box" id="answer3">Correct Answer: c) $array["key"]</div>
+        </div>
+
+        <div class="question">
+            <h3>4. PHP scripts are executed on the client side.</h3>
+            <div class="options">
+                <label><input type="radio" name="q4" value="a"> a) True</label>
+                <label><input type="radio" name="q4" value="b"> b) False</label>
+            </div>
+            <div class="answer-box" id="answer4">Correct Answer: b) False</div>
+        </div>
+
+        <div class="question">
+            <h3>5. An associative array in PHP uses a key-value structure similar to a hash map.</h3>
+            <div class="options">
+                <label><input type="radio" name="q5" value="a"> a) True</label>
+                <label><input type="radio" name="q5" value="b"> b) False</label>
+            </div>
+            <div class="answer-box" id="answer5">Correct Answer: a) True</div>
+        </div>
+
+        <div class="question">
+            <h3>6. What is the default file extension for PHP files?</h3>
+            <div class="options">
+                <label><input type="radio" name="q6" value="a"> a) .html</label>
+                <label><input type="radio" name="q6" value="b"> b) .txt</label>
+                <label><input type="radio" name="q6" value="c"> c) .php</label>
+                <label><input type="radio" name="q6" value="d"> d) .exe</label>
+            </div>
+            <div class="answer-box" id="answer6">Correct Answer: c) .php</div>
+        </div>
+
+        <div class="question">
+            <h3>7. How does a PHP script start and end?</h3>
+            <div class="options">
+                <label><input type="radio" name="q7" value="a"> a) &lt;script&gt; and &lt;/script&gt;</label>
+                <label><input type="radio" name="q7" value="b"> b) &lt;php&gt; and &lt;/php&gt;</label>
+                <label><input type="radio" name="q7" value="c"> c) &lt;?php and ?&gt;</label>
+                <label><input type="radio" name="q7" value="d"> d) &lt;?php and &gt;?</label>
+            </div>
+            <div class="answer-box" id="answer7">Correct Answer: c) &lt;?php and ?&gt;</div>
+        </div>
+
+        <div class="question">
+            <h3>8. A PHP script is executed on the server, and the plain HTML result is sent back to the browser.</h3>
+            <div class="options">
+                <label><input type="radio" name="q8" value="a"> a) True</label>
+                <label><input type="radio" name="q8" value="b"> b) False</label>
+            </div>
+            <div class="answer-box" id="answer8">Correct Answer: a) True</div>
+        </div>
+
+        <div class="question">
+            <h3>9. A PHP script must always be placed at the top of the document.</h3>
+            <div class="options">
+                <label><input type="radio" name="q9" value="a"> a) True</label>
+                <label><input type="radio" name="q9" value="b"> b) False</label>
+            </div>
+            <div class="answer-box" id="answer9">Correct Answer: b) False</div>
+        </div>
+
+        <div class="question">
+            <h3>10. In PHP, the only way to output text is with echo.</h3>
+            <div class="options">
+                <label><input type="radio" name="q10" value="a"> a) True</label>
+                <label><input type="radio" name="q10" value="b"> b) False</label>
+            </div>
+            <div class="answer-box" id="answer10">Correct Answer: b) False</div>
+        </div>
+
+        <div class="question">
+            <h3>11. There is no difference in the output between echo and print in PHP.</h3>
+            <div class="options">
+                <label><input type="radio" name="q11" value="a"> a) True</label>
+                <label><input type="radio" name="q11" value="b"> b) False</label>
+            </div>
+            <div class="answer-box" id="answer11">Correct Answer: a) True</div>
+        </div>
+
+        <div class="question">
+            <h3>12. In PHP, keywords like if, else, while, and echo are not case-sensitive.</h3>
+            <div class="options">
+                <label><input type="radio" name="q12" value="a"> a) True</label>
+                <label><input type="radio" name="q12" value="b"> b) False</label>
+            </div>
+            <div class="answer-box" id="answer12">Correct Answer: a) True</div>
+        </div>
+
+        <div class="question">
+            <h3>13. In PHP, variable names are case-sensitive.</h3>
+            <div class="options">
+                <label><input type="radio" name="q13" value="a"> a) True</label>
+                <label><input type="radio" name="q13" value="b"> b) False</label>
+            </div>
+            <div class="answer-box" id="answer13">Correct Answer: a) True</div>
+        </div>
+
+        <div class="question">
+            <h3>14. What will be the output of the following PHP code?</h3>
+            <pre>$txt = "Reading Books";  
+echo "I Like $txt!";</pre>
+            <div class="options">
+                <label><input type="radio" name="q14" value="a"> a) I Like $txt!</label>
+                <label><input type="radio" name="q14" value="b"> b) I Like Reading Books!</label>
+                <label><input type="radio" name="q14" value="c"> c) Error</label>
+                <label><input type="radio" name="q14" value="d"> d) I Like!</label>
+            </div>
+            <div class="answer-box" id="answer14">Correct Answer: b) I Like Reading Books!</div>
+        </div>
+
+        <div class="question">
+            <h3>15. What will be the output of the following PHP code?</h3>
+            <pre>$x = "world";  
+echo 'Hello ' . $x;</pre>
+            <div class="options">
+                <label><input type="radio" name="q15" value="a"> a) Hello world</label>
+                <label><input type="radio" name="q15" value="b"> b) Hello $x</label>
+                <label><input type="radio" name="q15" value="c"> c) Syntax error</label>
+                <label><input type="radio" name="q15" value="d"> d) Hello</label>
+            </div>
+            <div class="answer-box" id="answer15">Correct Answer: a) Hello world</div>
+        </div>
+
+        <div class="question">
+            <h3>16. What will be the output of the following PHP code?</h3>
+            <pre>$txt = "Reading Books";  
+echo 'I Like $txt!';</pre>
+            <div class="options">
+                <label><input type="radio" name="q16" value="a"> a) I Like $txt!</label>
+                <label><input type="radio" name="q16" value="b"> b) I Like Reading Books!</label>
+                <label><input type="radio" name="q16" value="c"> c) Error</label>
+                <label><input type="radio" name="q16" value="d"> d) I Like!</label>
+            </div>
+            <div class="answer-box" id="answer16">Correct Answer: a) I Like $txt!</div>
+        </div>
+
+        <div class="question">
+            <h3>17. When using the POST method, variables are displayed in the URL.</h3>
+            <div class="options">
+                <label><input type="radio" name="q17" value="a"> a) True</label>
+                <label><input type="radio" name="q17" value="b"> b) False</label>
+            </div>
+            <div class="answer-box" id="answer17">Correct Answer: b) False</div>
+        </div>
+
+        <div class="question">
+            <h3>18. In PHP, you can use both single quotes (') and double quotes (") for strings.</h3>
+            <div class="options">
+                <label><input type="radio" name="q18" value="a"> a) True</label>
+                <label><input type="radio" name="q18" value="b"> b) False</label>
+            </div>
+            <div class="answer-box" id="answer18">Correct Answer: a) True</div>
+        </div>
+
+        <div class="question">
+            <h3>19. How many mistakes are there in the following PHP code?</h3>
+            <pre>&lt;?php
+x = 10; 1
+y = 20; 2
+if $x > $y { 3
+    echo "x is greater than y" 4
+} else {
+    echo "x is less than or equal to y"; }
+?&gt;</pre>
+            <div class="options">
+                <label><input type="radio" name="q19" value="a"> a) 2</label>
+                <label><input type="radio" name="q19" value="b"> b) 3</label>
+                <label><input type="radio" name="q19" value="c"> c) 4</label>
+                <label><input type="radio" name="q19" value="d"> d) 5</label>
+            </div>
+            <div class="answer-box" id="answer19">Correct Answer: b) 3</div>
+        </div>
+
+        <div class="question">
+            <h3>20. How do you create an array in PHP?</h3>
+            <div class="options">
+                <label><input type="radio" name="q20" value="a"> a) $cars = "Volvo", "BMW", "Toyota";</label>
+                <label><input type="radio" name="q20" value="b"> b) $cars = array["Volvo", "BMW", "Toyota");</label>
+                <label><input type="radio" name="q20" value="c"> c) $cars = array("Volvo", "BMW", "Toyota");</label>
+                <label><input type="radio" name="q20" value="d"> d) $cars = {"Volvo", "BMW", "Toyota"};</label>
+            </div>
+            <div class="answer-box" id="answer20">Correct Answer: c) $cars = array("Volvo", "BMW", "Toyota");</div>
+        </div>
+
+        <div class="question">
+            <h3>21. How do you create a MySQL connection in PHP (MySQLi Object-Oriented)?</h3>
+            <div class="options">
+                <label><input type="radio" name="q21" value="a"> a) $conn = new mysqli($servername, $username, $password);</label>
+                <label><input type="radio" name="q21" value="b"> b) $conn = mysql_connect($servername, $username, $password);</label>
+                <label><input type="radio" name="q21" value="c"> c) $conn = mysqli_connect($servername, $username);</label>
+                <label><input type="radio" name="q21" value="d"> d) $conn = new mysql($servername, $username, $password);</label>
+            </div>
+            <div class="answer-box" id="answer21">Correct Answer: a) $conn = new mysqli($servername, $username, $password);</div>
+        </div>
+
+        <div class="question">
+            <h3>22. Which function is used to close a MySQLi connection manually in PHP?</h3>
+            <div class="options">
+                <label><input type="radio" name="q22" value="a"> a) mysqli_close($conn);</label>
+                <label><input type="radio" name="q22" value="b"> b) $conn->disconnect();</label>
+                <label><input type="radio" name="q22" value="c"> c) $conn->close();</label>
+                <label><input type="radio" name="q22" value="d"> d) disconnect($conn);</label>
+            </div>
+            <div class="answer-box" id="answer22">Correct Answer: c) $conn->close();</div>
+        </div>
+
+        <div class="question">
+            <h3>23. How do you store an SQL query in a variable in PHP?</h3>
+            <div class="options">
+                <label><input type="radio" name="q23" value="a"> a) $conn</label>
+                <label><input type="radio" name="q23" value="b"> b) $sql</label>
+                <label><input type="radio" name="q23" value="c"> c) $query</label>
+                <label><input type="radio" name="q23" value="d"> d) $stmt</label>
+            </div>
+            <div class="answer-box" id="answer23">Correct Answer: b) $sql</div>
+        </div>
+
+        <div class="question">
+            <h3>24. How many input fields are taken from the user in the following table?</h3>
+            <pre>CREATE TABLE MyGuests (
+    id INT(6) AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(30) NOT NULL,
+    lastname VARCHAR(30) NOT NULL,
+    email VARCHAR(50),
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</pre>
+            <div class="options">
+                <label><input type="radio" name="q24" value="a"> a) 1</label>
+                <label><input type="radio" name="q24" value="b"> b) 2</label>
+                <label><input type="radio" name="q24" value="c"> c) 3</label>
+                <label><input type="radio" name="q24" value="d"> d) 4</label>
+            </div>
+            <div class="answer-box" id="answer24">Correct Answer: c) 3</div>
+        </div>
+
+        <div class="question">
+            <h3>25. What does the number in INT(6) represent in MySQL?</h3>
+            <div class="options">
+                <label><input type="radio" name="q25" value="a"> a) Maximum number of digits that can be stored</label>
+                <label><input type="radio" name="q25" value="b"> b) Display length for the number (deprecated)</label>
+                <label><input type="radio" name="q25" value="c"> c) Size of the storage in bytes</label>
+                <label><input type="radio" name="q25" value="d"> d) Maximum value for the integer</label>
+            </div>
+            <div class="answer-box" id="answer25">Correct Answer: b) Display length for the number (deprecated)</div>
+        </div>
+
+        <div class="question">
+            <h3>26. What does AUTO_INCREMENT do?</h3>
+            <div class="options">
+                <label><input type="radio" name="q26" value="a"> a) Automatically increases the value for each new row</label>
+                <label><input type="radio" name="q26" value="b"> b) Forces manual input of the value</label>
+                <label><input type="radio" name="q26" value="c"> c) Prevents duplicate values</label>
+                <label><input type="radio" name="q26" value="d"> d) Resets to 1 after each entry</label>
+            </div>
+            <div class="answer-box" id="answer26">Correct Answer: a) Automatically increases the value for each new row</div>
+        </div>
+
+        <div class="question">
+            <h3>27. When do we need $dbname in PHP?</h3>
+            <div class="options">
+                <label><input type="radio" name="q27" value="a"> a) To connect to a specific database</label>
+                <label><input type="radio" name="q27" value="b"> b) To define the server hostname</label>
+                <label><input type="radio" name="q27" value="c"> c) To store the name of the database</label>
+                <label><input type="radio" name="q27" value="d"> d) To set the server password</label>
+            </div>
+            <div class="answer-box" id="answer27">Correct Answer: a) To connect to a specific database</div>
+        </div>
+
+        <div class="question">
+            <h3>28. What does $result -> fetch_assoc() do?</h3>
+            <div class="options">
+                <label><input type="radio" name="q28" value="a"> a) Inserts data into the table</label>
+                <label><input type="radio" name="q28" value="b"> b) Fetches a row as an associative array</label>
+                <label><input type="radio" name="q28" value="c"> c) Counts the number of rows in the result</label>
+                <label><input type="radio" name="q28" value="d"> d) Checks the connection to the database</label>
+            </div>
+            <div class="answer-box" id="answer28">Correct Answer: b) Fetches a row as an associative array</div>
+        </div>
+
+        <div class="question">
+            <h3>29. Which MySQL statement is used to insert new data into a database?</h3>
+            <div class="options">
+                <label><input type="radio" name="q29" value="a"> a) ADD NEW</label>
+                <label><input type="radio" name="q29" value="b"> b) INSERT NEW</label>
+                <label><input type="radio" name="q29" value="c"> c) ADD RECORD</label>
+                <label><input type="radio" name="q29" value="d"> d) INSERT INTO</label>
+            </div>
+            <div class="answer-box" id="answer29">Correct Answer: d) INSERT INTO</div>
+        </div>
+
+        <div class="question">
+            <h3>30. What is the purpose of the SELECT statement in SQL?</h3>
+            <div class="options">
+                <label><input type="radio" name="q30" value="a"> a) To insert new data into a table</label>
+                <label><input type="radio" name="q30" value="b"> b) To retrieve data from a table</label>
+                <label><input type="radio" name="q30" value="c"> c) To delete data from a table</label>
+                <label><input type="radio" name="q30" value="d"> d) To update existing data in a table</label>
+            </div>
+            <div class="answer-box" id="answer30">Correct Answer: b) To retrieve data from a table</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 WebDev Quiz. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function resetQuiz() {
+            const radioButtons = document.querySelectorAll('input[type="radio"]');
+            radioButtons.forEach(radio => radio.checked = false);
+
+            const answerBoxes = document.querySelectorAll('.answer-box');
+            answerBoxes.forEach(box => {
+                box.style.display = 'none';
+                box.classList.remove('correct', 'incorrect');
+                // Reset the text to the original correct answer
+                const correctAnswer = box.getAttribute('data-correct-answer');
+                if (correctAnswer) {
+                    box.textContent = `Correct Answer: ${correctAnswer}`;
+                }
+            });
+        }
+
+        function showAllAnswers() {
+            const answerBoxes = document.querySelectorAll('.answer-box');
+            answerBoxes.forEach(box => {
+                box.style.display = 'block';
+                box.classList.add('correct');
+                // Ensure the correct answer is displayed
+                const correctAnswer = box.getAttribute('data-correct-answer');
+                if (correctAnswer) {
+                    box.textContent = `Correct Answer: ${correctAnswer}`;
+                }
+            });
+        }
+
+        function hideAllAnswers() {
+            const answerBoxes = document.querySelectorAll('.answer-box');
+            answerBoxes.forEach(box => {
+                box.style.display = 'none';
+                box.classList.remove('correct', 'incorrect');
+            });
+        }
+
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const questionNumber = e.target.name.substring(1);
+                const answerBox = document.getElementById(`answer${questionNumber}`);
+                const correctAnswer = answerBox.getAttribute('data-correct-answer');
+                const userAnswer = e.target.value;
+
+                if (userAnswer === correctAnswer.split(") ")[0]) {
+                    answerBox.textContent = "Correct!";
+                    answerBox.classList.add('correct');
+                    answerBox.classList.remove('incorrect');
+                } else {
+                    answerBox.textContent = `Incorrect. Correct Answer: ${correctAnswer}`;
+                    answerBox.classList.add('incorrect');
+                    answerBox.classList.remove('correct');
+                }
+                answerBox.style.display = 'block';
+            });
+        });
+
+        // Store the correct answers in a data attribute for easy reset
+        const answerBoxes = document.querySelectorAll('.answer-box');
+        answerBoxes.forEach(box => {
+            const correctAnswer = box.textContent.split(": ")[1].trim();
+            box.setAttribute('data-correct-answer', correctAnswer);
+        });
+    </script>
+</body>
+</html>
