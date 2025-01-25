@@ -99,6 +99,7 @@
             <button class="btn" onclick="hideAllAnswers()">Hide All Answers</button>
         </div>
 
+        <!-- Questions Start Here -->
         <div class="question">
             <h3>1. What does PHP stand for?</h3>
             <div class="options">
@@ -181,16 +182,16 @@
             <div class="answer-box" id="answer8">Correct Answer: a) True</div>
         </div>
 
-        <div class="question">
-            <h3>9. A PHP script must always be placed at the top of the document.</h3>
-            <div class="options">
-                <label><input type="radio" name="q9" value="a"> a) True</label>
-                <label><input type="radio" name="q9" value="b"> b) False</label>
-            </div>
-            <div class="answer-box" id="answer9">Correct Answer: b) False</div>
-        </div>
+<div class="question">
+    <h3>9. A PHP script must always be placed at the top of the document.</h3>
+    <div class="options">
+        <label><input type="radio" name="q9" value="a"> a) True</label>
+        <label><input type="radio" name="q9" value="b"> b) False</label>
+    </div>
+    <div class="answer-box" id="answer9" data-correct-answer="b) False">Correct Answer: b) False. A PHP script can be placed anywhere in the document.</div>
+</div>
 
-        <div class="question">
+<div class="question">
             <h3>10. In PHP, the only way to output text is with echo.</h3>
             <div class="options">
                 <label><input type="radio" name="q10" value="a"> a) True</label>
@@ -198,7 +199,6 @@
             </div>
             <div class="answer-box" id="answer10">Correct Answer: b) False</div>
         </div>
-
         <div class="question">
             <h3>11. There is no difference in the output between echo and print in PHP.</h3>
             <div class="options">
@@ -265,14 +265,14 @@ echo 'I Like $txt!';</pre>
             <div class="answer-box" id="answer16">Correct Answer: a) I Like $txt!</div>
         </div>
 
-        <div class="question">
-            <h3>17. When using the POST method, variables are displayed in the URL.</h3>
-            <div class="options">
-                <label><input type="radio" name="q17" value="a"> a) True</label>
-                <label><input type="radio" name="q17" value="b"> b) False</label>
-            </div>
-            <div class="answer-box" id="answer17">Correct Answer: b) False</div>
-        </div>
+<div class="question">
+    <h3>17. When using the POST method, variables are displayed in the URL.</h3>
+    <div class="options">
+        <label><input type="radio" name="q17" value="a"> a) True</label>
+        <label><input type="radio" name="q17" value="b"> b) False</label>
+    </div>
+    <div class="answer-box" id="answer17" data-correct-answer="b) False">Correct Answer: b) False. The GET method variables are displayed in the URL.</div>
+</div>
 
         <div class="question">
             <h3>18. In PHP, you can use both single quotes (') and double quotes (") for strings.</h3>
@@ -432,74 +432,82 @@ if $x > $y { 3
     </div>
 
     <footer>
-        <p>&copy; 2023 WebDev Quiz. All rights reserved.</p>
+        <p>&copy; دعواتكم بالزوجة الصالحة.</p>
     </footer>
 
     <script>
-        function resetQuiz() {
-            const radioButtons = document.querySelectorAll('input[type="radio"]');
-            radioButtons.forEach(radio => radio.checked = false);
-
-            const answerBoxes = document.querySelectorAll('.answer-box');
-            answerBoxes.forEach(box => {
-                box.style.display = 'none';
-                box.classList.remove('correct', 'incorrect');
-                // Reset the text to the original correct answer
-                const correctAnswer = box.getAttribute('data-correct-answer');
-                if (correctAnswer) {
-                    box.textContent = `Correct Answer: ${correctAnswer}`;
-                }
-            });
-        }
-
-        function showAllAnswers() {
-            const answerBoxes = document.querySelectorAll('.answer-box');
-            answerBoxes.forEach(box => {
-                box.style.display = 'block';
-                box.classList.add('correct');
-                // Ensure the correct answer is displayed
-                const correctAnswer = box.getAttribute('data-correct-answer');
-                if (correctAnswer) {
-                    box.textContent = `Correct Answer: ${correctAnswer}`;
-                }
-            });
-        }
-
-        function hideAllAnswers() {
-            const answerBoxes = document.querySelectorAll('.answer-box');
-            answerBoxes.forEach(box => {
-                box.style.display = 'none';
-                box.classList.remove('correct', 'incorrect');
-            });
-        }
-
+    function resetQuiz() {
         const radioButtons = document.querySelectorAll('input[type="radio"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                const questionNumber = e.target.name.substring(1);
-                const answerBox = document.getElementById(`answer${questionNumber}`);
-                const correctAnswer = answerBox.getAttribute('data-correct-answer');
-                const userAnswer = e.target.value;
+        radioButtons.forEach(radio => radio.checked = false);
 
-                if (userAnswer === correctAnswer.split(") ")[0]) {
-                    answerBox.textContent = "Correct!";
-                    answerBox.classList.add('correct');
-                    answerBox.classList.remove('incorrect');
-                } else {
-                    answerBox.textContent = `Incorrect. Correct Answer: ${correctAnswer}`;
-                    answerBox.classList.add('incorrect');
-                    answerBox.classList.remove('correct');
-                }
-                answerBox.style.display = 'block';
-            });
-        });
-
-        // Store the correct answers in a data attribute for easy reset
         const answerBoxes = document.querySelectorAll('.answer-box');
         answerBoxes.forEach(box => {
-            const correctAnswer = box.textContent.split(": ")[1].trim();
-            box.setAttribute('data-correct-answer', correctAnswer);
+            box.style.display = 'none';
+            box.classList.remove('correct', 'incorrect');
+            // Reset the text to the original correct answer
+            const correctAnswer = box.getAttribute('data-correct-answer');
+            if (correctAnswer) {
+                box.textContent = `Correct Answer: ${correctAnswer}`;
+            }
         });
-    </script>
+    }
+
+    function showAllAnswers() {
+        const answerBoxes = document.querySelectorAll('.answer-box');
+        answerBoxes.forEach(box => {
+            box.style.display = 'block';
+            box.classList.add('correct');
+            // Ensure the correct answer is displayed
+            const correctAnswer = box.getAttribute('data-correct-answer');
+            if (correctAnswer) {
+                box.textContent = `Correct Answer: ${correctAnswer}`;
+            }
+        });
+    }
+
+    function hideAllAnswers() {
+        const answerBoxes = document.querySelectorAll('.answer-box');
+        answerBoxes.forEach(box => {
+            box.style.display = 'none';
+            box.classList.remove('correct', 'incorrect');
+        });
+    }
+
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            const questionNumber = e.target.name.substring(1);
+            const answerBox = document.getElementById(`answer${questionNumber}`);
+            const correctAnswer = answerBox.getAttribute('data-correct-answer');
+            const userAnswer = e.target.value;
+
+            // Check if the user's answer matches the correct answer
+            if (userAnswer === correctAnswer.split(") ")[0]) {
+                answerBox.textContent = "Correct!";
+                answerBox.classList.add('correct');
+                answerBox.classList.remove('incorrect');
+
+                // Add specific reasons for certain questions when "False" is selected
+                if (questionNumber === "9" && userAnswer === "b") {
+                    answerBox.textContent = "Correct! A PHP script can be placed anywhere in the document.";
+                } else if (questionNumber === "17" && userAnswer === "b") {
+                    answerBox.textContent = "Correct! The GET method variables are displayed in the URL.";
+                }
+            } else {
+                answerBox.textContent = `Incorrect. Correct Answer: ${correctAnswer}`;
+                answerBox.classList.add('incorrect');
+                answerBox.classList.remove('correct');
+            }
+            answerBox.style.display = 'block';
+        });
+    });
+
+    // Store the correct answers in a data attribute for easy reset
+    const answerBoxes = document.querySelectorAll('.answer-box');
+    answerBoxes.forEach(box => {
+        const correctAnswer = box.textContent.split(": ")[1].trim();
+        box.setAttribute('data-correct-answer', correctAnswer);
+    });
+</script>
 </body>
 </html>
