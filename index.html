@@ -134,6 +134,12 @@
             <button class="btn" onclick="resetQuiz()">Reset</button>
             <button class="btn" onclick="showAllAnswers()">Show All Answers</button>
             <button class="btn" onclick="hideAllAnswers()">Hide All Answers</button>
+	    <button onclick="scrollToBottom()" style="position: fixed; bottom: 20px; right: 20px; padding: 10px 12px; background-color: #2563eb; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    ↓
+</button>
+            <button onclick="scrollToTop()" style="position: fixed; top: 20px; right: 20px; padding: 10px 12px; background-color: #2563eb; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    ↑
+</button>
         </div>
 
         <!-- Questions Start Here -->
@@ -507,6 +513,20 @@ if $x > $y { 3
         answerBoxes.forEach(box => {
             box.style.display = 'none';
             box.classList.remove('correct', 'incorrect');
+        });
+    }
+       function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Smooth scrolling
+        });
+    }
+
+    // Scroll to Bottom Function
+    function scrollToBottom() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth' // Smooth scrolling
         });
     }
 
