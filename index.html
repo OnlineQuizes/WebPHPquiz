@@ -25,6 +25,20 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+	/* Header Styles */
+        .quiz-header {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: white;
+            padding: 1rem;
+            background-color: #2563eb; /* Light blue background */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+	
+
         .controls {
             text-align: center;
             margin-bottom: 1.5rem;
@@ -57,10 +71,29 @@
             font-size: 1.5rem;
             color: #1f2937;
         }
+	
+	/* Choices (Options) Styles */
+        .options label {
+            display: block;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background-color: #f8fafc; /* Light gray background */
+            border-radius: 12px; /* More rounded corners */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
         .options label {
             display: block;
             margin-bottom: 1rem;
+        }
+
+	.options label:hover {
+            background-color: #e2e8f0; /* Slightly darker gray on hover */
+        }
+
+        .options input[type="radio"] {
+            margin-right: 0.5rem;
         }
 
         .answer-box {
@@ -92,6 +125,10 @@
 </head>
 <body>
     <div class="quiz-container">
+	<!-- Header -->
+        <div class="quiz-header">
+            Web Development Quiz
+        </div>
         <!-- Buttons placed directly in the page -->
         <div class="controls">
             <button class="btn" onclick="resetQuiz()">Reset</button>
